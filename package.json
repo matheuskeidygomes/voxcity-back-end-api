@@ -1,0 +1,28 @@
+{
+  "name": "voxcity-login",
+  "version": "1.0.0",
+  "author": "Matheus Keidy <matheuskeidygomes@gmail.com>",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.7.0"
+  },
+  "engine": {
+    "node": "16.14"
+  }
+}
