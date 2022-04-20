@@ -1,4 +1,4 @@
-# MyPharma API 
+# Voxcity API
 
 Esta api é utilizada para armazenamento e visualização de dados de usuários. Para seu desenvolvimento
 foi utilizado Node.JS com Express.JS e MySQL.
@@ -42,7 +42,7 @@ foi utilizado Node.JS com Express.JS e MySQL.
 Será necessário ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). Também é 
 aconselhável ter um editor para trabalhar com o código, como o [VSCode](https://code.visualstudio.com/).
-O banco de dados desta aplicação se encontra na nuvem, porém se desejar roda-lo em sua máquina local, é aconselhável instalar o [MySQL](https://www.mongodb.com/try/download/community).
+O banco de dados desta aplicação se encontra na nuvem, porém se desejar roda-lo em sua máquina local, é aconselhável instalar o [MySQL](https://dev.mysql.com/downloads/mysql/) e um Gerenciador de banco de dados, como o [DBeaver](https://dbeaver.io/download/).
 
 ```bash
 
@@ -55,20 +55,21 @@ O banco de dados desta aplicação se encontra na nuvem, porém se desejar roda-
 ```bash
 
 # Clone este repositório
-$ git clone <https://github.com/matheuskeidygomes/mypharma-back-end-api.git>
+$ git clone <https://github.com/matheuskeidygomes/voxcity-back-end-api.git>
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd mypharma-back-end-api
+$ cd voxcity-back-end-api
 
 # O banco de dados desta aplicação se encontra na nuvem, caso deseje rodar com banco local,  
-# acesse o arquivo ".env" na raiz do projeto, e altere o valor da variável de ambiente "MONGO_URL" 
-# para "mongodb://localhost:27017/mypharma".
+# crie um arquivo ".env" na raiz do projeto, e insira as variáveis de ambiente responsáveis 
+# pela conexão com o banco de dados local: MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD e MYSQL_PORT.
 
 # Instale as dependências
 $ npm install
 
-# Antes de executar a aplicação, caso esteja rodando com banco local, certifique se o 
-# serviço do MongoDB se encontra ativo. 
+# Antes de executar a aplicação, caso esteja rodando com banco local, verifique se o serviço do MySQL se encontra
+# ativo, e certifique-se de realizar o backup do arquivo sql presente na raiz do projeto, pois o mesmo é responsável 
+# pela criação do banco de dados utilizado na aplicação.  
 
 # Execute a aplicação 
 $ npm start
@@ -78,28 +79,6 @@ $ npm start
 ```
 
 ------------------------------------------------------------------------------
-
-# Testes
-
-Para os testes da aplicação, foi utilizado Jest. Para rodar os testes, siga as seguintes instruções:
-
-```bash
-
-# Clone este repositório
-$ git clone <https://github.com/matheuskeidygomes/mypharma-back-end-api.git>
-
-# Acesse a pasta do projeto no terminal/cmd 
-$ cd mypharma-back-end-api
-
-# Instale as dependências
-$ npm install
-
-# Execute o comando
-$ npm run test
-
-# Aguarde a execução dos testes
-
-```
 
 # Rotas
 
@@ -135,12 +114,11 @@ Exemplo de resposta:
 ```bash
 
 {
-    "response": {
-        "status": true,
-        "name": "usuário teste",
-        "email": "teste@gmail.com",
-        "token": "eyJhskjGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzUwOTNiMzRjYzVlOTMzNDVhYmUzNCIsImVtYWlsIjoiYW5hQGdtYWlsLmNvbSIsImlhdCI6MTY0NzY1MDYzMn0.eP2zogD6-b2bWdLyVB8weT7PiwzR0273XQh7hG8mkK0"
-    }
+    "id": 8,
+    "name": "usuário teste",
+    "email": "teste@gmail.com",
+    "experience": "Programador",
+    "token": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTolNlM4"
 }
 
 ```
@@ -178,12 +156,11 @@ Exemplo de resposta:
 ```bash
 
 {
-    "response": {
-        "status": true,
-        "name": "usuário teste",
-        "email": "teste@gmail.com",
-        "token": "eyJhskjGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzUwOTNiMzRjYzVlOTMzNDVhYmUzNCIsImVtYWlsIjoiYW5hQGdtYWlsLmNvbSIsImlhdCI6MTY0NzY1MDYzMn0.eP2zogD6-b2bWdLyVB8weT7PiwzR0273XQh7hG8mkK0"
-    }
+    "id": 8,
+    "name": "usuário teste",
+    "email": "teste@gmail.com",
+    "experience": "Programador",
+    "token": "eyJhbGciOiJIdsaI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzODksImV4cCI6MTY1MDQ5MTU4OX0.--5leV46x1TilkhtRXDqcJAhXbqZBAXJywvqKkmG58A"
 }
 
 ```
@@ -197,7 +174,7 @@ Exemplo de resposta:
 ```bash
 
 {
-    "error": "E-mail and/or password incorrects! "
+    "error": "E-mail e/ou senha incorretos! "
 }
 
 ```
@@ -206,37 +183,29 @@ Exemplo de resposta:
 -------------------------------------------------------------------------------------------
 
 
-## (Privado) POST /brand
+## (Privado) GET /users/:id
 
-Este endpoint é utilizado para realizar o processo de cadastro de marcas no banco de dados.
+Este endpoint é utilizado para visualizar dados do seu usuário cadastrado no banco de dados.
 
 ### PARÂMETROS
 
-Nome da marca.
-
-Exemplo:
-
-```bash
-
-{
-    "name": "Marca Teste",
-}
-
-```
+Na url deve ser enviado como parâmetro o id do seu usuário no banco de dados. Também deve ser enviado seu Token JWT com type "Bearer" no campo Authorization do header.
 
 ### RESPOSTAS
 
 #### OK! 
 
-Caso essa seja a resposta, você vai receber os dados da marca cadastrada.
+Caso essa seja a resposta, você vai receber os dados do seu usuário cadastrado.
 
 Exemplo de resposta:
 
 ```bash
 
 {
-    "id": "62353327498deef01afbad10",
-    "name": "Marca Teste"
+    "id": 8,
+    "name": "usuário teste",
+    "email": "teste@gmail.com",
+    "experience": "Programador"
 }
 
 ```
@@ -250,57 +219,21 @@ Exemplo de resposta:
 ```bash
 
 {
-    "error": "Unauthorized!"
+    "error": "Não autorizado!"
 }
 
 ```
 
------------------------------------------------------------------------------------------------
+#### USUÁRIO INVÁLIDO!
 
-
-## (Privado) GET /brands
-
-Este endpoint é utilizado para retornar a listagem de todos as marcas cadastradas no banco de dados.
-
-### RESPOSTAS
-
-#### OK!
-
-Caso essa seja a resposta, você vai receber uma listagem das marcas cadastradas no banco de dados.
+Caso essa seja a resposta, significa que o id inserido na url como parâmetro, não coincide com o id do seu usuário logado. 
 
 Exemplo de resposta:
 
 ```bash
 
 {
-    "list": [
-        {
-            "_id": "62350d9a4f73da1e8720ed4b",
-            "UUID": "056d1ed6-61ce-4665-815e-5438ff6d8ac1",
-            "name": "Medley",
-            "__v": 0
-        },
-        {
-            "_id": "62350da14f73da1e8720ed4e",
-            "UUID": "9c0ccf9b-42bd-42fa-b889-3d61625e6ad9",
-            "name": "Eurofarma",
-            "__v": 0
-        }
-    ]
-}
-
-```
-
-#### FALHA NA AUTENTICAÇÃO! 
-
-Caso essa seja a resposta, significa que ocorreu uma falha durante o processo de autenticação da requisição. Motivos: Token inválido, expirado ou inexistente.
-
-Exemplo de resposta:
-
-```bash
-
-{
-    "error": "Unauthorized!"
+    "error": "Este ID de usuário não pertence a sua conta. Por favor, insira o ID correto.!"
 }
 
 ```
@@ -312,8 +245,7 @@ Exemplo de resposta:
 ![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
 -------------------------------------------------------------------------------------------------------
 
