@@ -88,7 +88,7 @@ Este endpoint é utilizado para realizar o processo de cadastro do usuário.
 
 ### PARÂMETROS
 
-Nome, e-mail, experiência e senha do respectivo usuário.
+Nome, e-mail, experiência, telefone e senha do respectivo usuário.
 
 Exemplo:
 
