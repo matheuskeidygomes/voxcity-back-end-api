@@ -15,10 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Copiando estrutura do banco de dados para gallery
-CREATE DATABASE IF NOT EXISTS `login` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `login`;
-
 --
 -- Table structure for table `users`
 --
@@ -32,6 +28,7 @@ CREATE TABLE `users` (
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `experience` varchar(100) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,7 +39,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'Bruno','bruno@gmail.com','$2b$10$7WnpJcZ1g.Y1iWNnCTxnoORUfN5aKlcdn2w7Dk8pxx4lVRDigmN6.','Programador'),(6,'Ana baptista','anabaptista@gmail.com','$2b$10$SzqUNg7xJHsbsevLxgtBVe4u8Q7PICGlR7ZuS9IR0cRq3ZeQjECYK','Iniciante'),(7,'Matheus','dsasd@dsa.com','$2b$10$jtjoGDHlYuENPTEuSx/Gh.nGoeEFkIrCO66sLSMPX0YFRj6FazqDq','Programador'),(8,'usuário teste','teste@gmail.com','$2b$10$Rt/Cl2MUNobjKrZ9oqaK/.BQQUKBiwhRYar5ocd1biiMTmMQXw2qO','Programador');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-20 17:08:31
+-- Dump completed on 2022-04-20 22:04:25
