@@ -29,7 +29,7 @@ export const Register = async (req, res) => {
 
     const { name, email, password, experience, phone } = req.body;
 
-    if (name && email && password && experience) {
+    if (name && email && password && experience && phone) {
 
         let response = await UserService.Register(name, email, password, experience, phone);
 

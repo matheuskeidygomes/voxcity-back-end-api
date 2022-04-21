@@ -28,7 +28,7 @@ export const Register = async (name, email, password, experience, phone) => {
 
         let hash = bcrypt.hashSync(password,10);
 
-        let newUser = await User.create({ name, email, password: hash, experience });
+        let newUser = await User.create({ name, email, password: hash, experience, phone });
 
         const token = JWT.sign(
             { id: newUser.id, email: newUser.email },
