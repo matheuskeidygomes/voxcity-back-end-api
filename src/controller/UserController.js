@@ -27,11 +27,11 @@ export const GetOne = async (req, res) => {
 
 export const Register = async (req, res) => {
 
-    const { name, email, password, experience } = req.body;
+    const { name, email, password, experience, phone } = req.body;
 
     if (name && email && password && experience) {
 
-        let response = await UserService.Register(name, email, password, experience);
+        let response = await UserService.Register(name, email, password, experience, phone);
 
         res.json(response);
 

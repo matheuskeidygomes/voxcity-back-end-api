@@ -19,6 +19,9 @@ export const User = database.define("User", {
     },
     experience: {
         type: Sequelize.STRING,
+    },
+    phone: {
+        type: Sequelize.STRING,
     }
 
 }, {

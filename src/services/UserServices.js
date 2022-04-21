@@ -12,7 +12,7 @@ export const GetOne = async (id) => {
 
     if (user) {
 
-        return {id: user.id, name: user.name, email: user.email, experience: user.experience, alphanumeric: uuidv4()};
+        return {id: user.id, name: user.name, email: user.email, experience: user.experience, phone: user.phone, alphanumeric: uuidv4()};
 
     } else {
 
@@ -20,7 +20,7 @@ export const GetOne = async (id) => {
     }
 }
 
-export const Register = async (name, email, password, experience) => {
+export const Register = async (name, email, password, experience, phone) => {
 
     let hasUser = await User.findOne({ where: { email } });
 
@@ -36,7 +36,7 @@ export const Register = async (name, email, password, experience) => {
             { expiresIn: '24h' }
         );
 
-        return { id:newUser.id, name, email, experience, token };
+        return { id:newUser.id, name, email, experience, phone, token };
 
     } else {
 
@@ -62,7 +62,7 @@ export const Login = async (email, password) => {
                 { expiresIn: '24h' }
             );
     
-            return { id: user.id, name: user.name, email: user.email, experience:user.experience, token };
+            return { id: user.id, name: user.name, email: user.email, experience:user.experience, phone: user.phone, token };
     
              
         } else {
