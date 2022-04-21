@@ -97,8 +97,9 @@ Exemplo:
 {
     "name" : "usuário teste",
     "email": "teste@gmail.com",
-    "experience": "Programador"
-    "password": "senhateste"
+    "experience": "Programador",
+    "password": "senhateste",
+    "phone": "21999999999"
 }
 
 ```
@@ -118,6 +119,7 @@ Exemplo de resposta:
     "name": "usuário teste",
     "email": "teste@gmail.com",
     "experience": "Programador",
+    "phone": "21999999999",
     "token": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTolNlM4"
 }
 
@@ -160,6 +162,7 @@ Exemplo de resposta:
     "name": "usuário teste",
     "email": "teste@gmail.com",
     "experience": "Programador",
+    "phone": "21999999999",
     "token": "eyJhbGciOiJIdsaI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzODksImV4cCI6MTY1MDQ5MTU4OX0.--5leV46x1TilkhtRXDqcJAhXbqZBAXJywvqKkmG58A"
 }
 
@@ -205,7 +208,8 @@ Exemplo de resposta:
     "id": 8,
     "name": "usuário teste",
     "email": "teste@gmail.com",
-    "experience": "Programador"
+    "experience": "Programador",
+    "phone": "21999999999"
 }
 
 ```
