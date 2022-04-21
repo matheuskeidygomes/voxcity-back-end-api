@@ -33,7 +33,7 @@ export const Register = async (name, email, password, experience) => {
         const token = JWT.sign(
             { id: newUser.id, email: newUser.email },
             process.env.JWT_SECRET_KEY,
-            { expiresIn: '30m' }
+            { expiresIn: '24h' }
         );
 
         return { id:newUser.id, name, email, experience, token };
@@ -59,7 +59,7 @@ export const Login = async (email, password) => {
             const token = JWT.sign(
                 { id: user.id, email: user.email },
                 process.env.JWT_SECRET_KEY,
-                { expiresIn: '2h' }
+                { expiresIn: '24h' }
             );
     
             return { id: user.id, name: user.name, email: user.email, experience:user.experience, token };
