@@ -1,5 +1,5 @@
 import * as UserService from '../services/UserServices.js';
-import JWT from 'jsonwebtoken';
+import JWT, { decode } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -58,6 +58,29 @@ export const Login = async (req, res) => {
     }
 
 };
+
+export const Refresh = async (req, res) => {
+
+    const { refreshToken } = req.body;
+
+    let decodedToken = JWT.verify(refreshToken, process.env.JWT_REFRESH_KEY);
+    let userId = decodedToken.id;
+
+    if (refreshToken) {
+
+        let newToken = await UserService.RefreshToken(userId);
+
+        res.json(newToken);
+
+    } else {
+
+        res.json({ error: 'Necessário inserir um refresh token válido.' });
+    }
+
+};
+
+
+
 
 
 
