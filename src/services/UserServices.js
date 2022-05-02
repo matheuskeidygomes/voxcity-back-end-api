@@ -53,7 +53,7 @@ export const Login = async (email, password) => {
 
         if (validPassword) {
 
-            const accessToken = JWT.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET_KEY, { expiresIn: '1m' });
+            const accessToken = JWT.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' });
             const refreshToken = JWT.sign({ id: user.id }, process.env.JWT_REFRESH_KEY, { expiresIn: '15 days' });
 
             return { id: user.id, name: user.name, email: user.email, experience: user.experience, phone: user.phone, token: accessToken, refreshToken };
@@ -76,7 +76,7 @@ export const RefreshToken = async (userId) => {
 
     if (user) {
 
-        const accessToken = JWT.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET_KEY, { expiresIn: '15 days' });
+        const accessToken = JWT.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET_KEY, { expiresIn: '24h' });
 
         return { id: user.id, token: accessToken };
 
