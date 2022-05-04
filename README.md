@@ -120,7 +120,8 @@ Exemplo de resposta:
     "email": "teste@gmail.com",
     "experience": "Programador",
     "phone": "21999999999",
-    "token": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTolNlM4"
+    "token": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTolNlM4",
+    "refreshToken": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTDSAD41d"
 }
 
 ```
@@ -163,7 +164,8 @@ Exemplo de resposta:
     "email": "teste@gmail.com",
     "experience": "Programador",
     "phone": "21999999999",
-    "token": "eyJhbGciOiJIdsaI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzODksImV4cCI6MTY1MDQ5MTU4OX0.--5leV46x1TilkhtRXDqcJAhXbqZBAXJywvqKkmG58A"
+    "token": "eyJhbGciOiJIdsaI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzODksImV4cCI6MTY1MDQ5MTU4OX0.--5leV46x1TilkhtRXDqcJAhXbqZBAXJywvqKkmG58A",
+    "refreshToken": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTDSAD41d"
 }
 
 ```
@@ -184,6 +186,60 @@ Exemplo de resposta:
 
 
 -------------------------------------------------------------------------------------------
+
+
+## (Privado) POST /refresh
+
+Este endpoint é utilizado para realizar o processo de revalidação do token de usuário.
+
+### PARÂMETROS
+
+Refresh Token do respectivo usuário com sessão expirada.
+
+Exemplo:
+
+```bash
+
+{
+    "refreshToken": "eyJhbGciOiJIUzIdsiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzNDMsImV4cCI6MTY1MDQ4NjE0M30.ldsa0pLCDmiCsuFEfYdr3XSmQzIH1ipGTa1DTDSAD41d"
+}
+
+```
+
+### RESPOSTAS
+
+#### OK! 
+
+Caso essa seja a resposta, você vai receber um novo access Token para acessar endpoints protegidos da api.
+
+Exemplo de resposta:
+
+```bash
+
+{
+    "id": 8,
+    "token": "eyJhbGciOiJIdsaI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJpYXQiOjE2NTA0ODQzODksImV4cCI6MTY1MDQ5MTU4OX0.--5leV46x1TilkhtRXDqcJAhXbqZBAXJywvqKkmG58A",
+}
+
+```
+
+#### FALHA NA AUTENTICAÇÃO!
+
+Caso essa seja a resposta, significa que ocorreu uma falha durante o processo de autenticação da requisição. Motivos: Token Inválido ou inexistente.
+
+Exemplo de resposta:
+
+```bash
+
+{
+    "error": "Não autorizado! "
+}
+
+```
+
+
+-------------------------------------------------------------------------------------------
+
 
 
 ## (Privado) GET /users/:id
